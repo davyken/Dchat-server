@@ -5,6 +5,8 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
+import ResertPassword from "./pages/resertpassword/resertpassword";
+
 
 function App() {
 	const { authUser } = useAuthContext();
@@ -14,6 +16,7 @@ function App() {
 				<Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
 				<Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />
 				<Route path='/signup' element={authUser ? <Navigate to='/' /> : <SignUp />} />
+				<Route path="resertpassword" element={<ResertPassword />} />
 			</Routes>
 			<Toaster />
 		</div>
