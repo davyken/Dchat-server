@@ -92,11 +92,35 @@ const SignUp = () => {
 					>
 						Already have an account?
 					</Link>
+					<div>
+							{/* terms od policies */}
+							<input
+                  id="agreeTerms"
+                  type="checkbox"
+				  className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
+				  />
+				
+                <label
+                  htmlFor="agreeTerms"
+				  className='text-sm mt-2 inline-block'
+				  >
+                  I agree to the{" "}
+                  <a
+                    href="#"
+					className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
+					>
+                    Terms and Conditions
+                  </a>
+                </label>
+					</div>
 
 					<div>
 						<button className='btn btn-block btn-sm mt-2 border border-slate-700' disabled={loading}>
 							{loading ? <span className='loading loading-spinner'></span> : "Sign Up"}
 						</button>
+					</div>
+					<div>
+						
 					</div>
 				</form>
 			</div>
