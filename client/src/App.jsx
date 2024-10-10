@@ -11,7 +11,7 @@ import LandingPage from "./pages/landingPage/LandingPage"; // Import the Landing
 function App() {  
     const { authUser } = useAuthContext();  
     return (  
-        <div className='min-h-screen flex flex-col justify-center'>  
+        <div className='min-h-screen flex flex-col justify-center items-center'>  
                 <Routes>  
                     <Route path='/' element={<LandingPage />} /> {/* New route for LandingPage */}  
                     <Route path='/home' element={authUser ? <Home /> : <Navigate to={"/login"} />} />  
