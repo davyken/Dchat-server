@@ -23,5 +23,8 @@
     "react-hook-form": "^7.53.0",
     "socket.io": "^1.5.1",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "manifest.json": "^1.2.0"
   }
 }

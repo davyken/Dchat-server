@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Mic, Send, Smile, X, Paperclip } from "lucide-react";
+import EmojiPicker from 'emoji-picker-react';
 import useSendMessage from "../../hooks/useSendMessage";
 
 const MessageInput = () => {
@@ -27,14 +28,11 @@ const MessageInput = () => {
 		
 		if (selectedFile) {
 			console.log("Uploading file:", selectedFile.name);
-			// Implement file upload logic here
 		}
 
 		if (recordedAudio) {
 			console.log("Sending audio message");
-			// Implement audio sending logic here
-			// You might want to convert the blob to a File object or send it directly
-			// await sendMessage(recordedAudio);
+			
 		} else {
 			await sendMessage(message);
 		}
@@ -46,6 +44,7 @@ const MessageInput = () => {
 
 	const handleEmojiClick = (emojiObject) => {
 		setMessage((prevMessage) => prevMessage + emojiObject.emoji);
+		setShowEmojiPicker(false);
 	};
 
 	const toggleEmojiPicker = () => {
@@ -157,7 +156,13 @@ const MessageInput = () => {
 								<X size={24} />
 							</button>
 						</div>
-						{/* Emoji picker component would go here */}
+						<EmojiPicker
+							onEmojiClick={handleEmojiClick}
+							autoFocusSearch={false}
+							theme="dark"
+							width={300}
+							height={400}
+						/>
 					</div>
 				)}
 			</div>
