@@ -37,7 +37,8 @@ const SearchInput = () => {
 
 	return (  
 		<div>  
-			<form onSubmit={handleSubmit} className='flex flex-col sm:flex-row items-center gap-2 p-4'>  
+<h1 className="text-3xl text-white-400 font-bold">Chats</h1>
+		<form onSubmit={handleSubmit} className='flex flex-col sm:flex-row items-center gap-2 p-4'>  
 				<input  
 					type='text'  
 					placeholder='Search…'  
