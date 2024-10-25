@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 // import multer from "multer";
 // import fs from "fs";
-import { fileURLToPath } from "url";
+// import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/authroutes.js";
 import messageRoutes from "./routes/messageroute.js";
@@ -16,7 +16,7 @@ import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
-// const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 5000;
