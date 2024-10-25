@@ -12,7 +12,7 @@ import userRoutes from "./routes/user_routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { app, server } from "./socket/socket.js";
-import { File } from "./models/file.model.js"; // You'll need to create this model
+import { File } from "./models/file.model.js"; 
 
 dotenv.config();
 
@@ -37,8 +37,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
 app.use(cookieParser());
+app.use(express.json()); 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
@@ -61,7 +61,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
 
     res.json({
       message: 'File uploaded successfully',
-      fileUrl: `/uploads/${req.file.filename}` // You might want to use a more secure URL structure
+      fileUrl: `/uploads/${req.file.filename}` 
     });
   } catch (error) {
     console.error('Error saving file to database:', error);
@@ -69,7 +69,6 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   }
 });
 
-// Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
