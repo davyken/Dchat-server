@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Mic, Send, Smile, X, Paperclip } from "lucide-react";
 import EmojiPicker from 'emoji-picker-react';
 import useSendMessage from "../../hooks/useSendMessage";
+import axios from 'axios';
 
 const MessageInput = () => {
 	const [message, setMessage] = useState("");
@@ -26,20 +27,41 @@ const MessageInput = () => {
 		e.preventDefault();
 		if (!message && !selectedFile && !recordedAudio) return;
 		
-		if (selectedFile) {
-			console.log("Uploading file:", selectedFile.name);
+		try {
+			if (selectedFile) {
+				const fileUrl = await uploadFile(selectedFile);
+				await sendMessage("", { type: "image", url: fileUrl });
+			}
+			if (recordedAudio) {
+				const audioUrl = await uploadFile(new File([recordedAudio], "audio.wav", { type: "audio/wav" }));
+				await sendMessage("", { type: "audio", url: audioUrl });
+			}
+			if (message) {
+				await sendMessage(message);
+			}
+			setMessage("");
+			setSelectedFile(null);
+			setRecordedAudio(null);
+		} catch (error) {
+			console.error("Error sending message or uploading file:", error);
 		}
+	};
 
-		if (recordedAudio) {
-			console.log("Sending audio message");
-			
-		} else {
-			await sendMessage(message);
+	const uploadFile = async (file) => {
+		const formData = new FormData();
+		formData.append('file', file);
+		try {
+			const response = await axios.post('/api/upload', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
+			console.log("File uploaded successfully:", response.data);
+			return response.data.fileUrl;
+		} catch (error) {
+			console.error("Error uploading file:", error);
+			throw error;
 		}
-
-		setMessage("");
-		setSelectedFile(null);
-		setRecordedAudio(null);
 	};
 
 	const handleEmojiClick = (emojiObject) => {
@@ -141,7 +163,7 @@ const MessageInput = () => {
 					>
 						<Mic size={20} color={isRecording ? "red" : "currentColor"} />
 					</button>
-					<button type='submit' className='text-gray-400 hover:text-white'>
+					<button type='submit' className='text-gray-400 hover:text-white' disabled={loading}>
 						{loading ? <div className='loading loading-spinner'></div> : <Send size={20} />}
 					</button>
 				</div>
@@ -169,6 +191,13 @@ const MessageInput = () => {
 			{selectedFile && (
 				<div className='mt-2 text-sm text-gray-300'>
 					Selected file: {selectedFile.name}
+					{selectedFile.type.startsWith('image/') && (
+						<img 
+							src={URL.createObjectURL(selectedFile)} 
+							alt="Selected file preview" 
+							className="mt-2 max-w-xs max-h-40 object-contain"
+						/>
+					)}
 				</div>
 			)}
 			{recordedAudio && (

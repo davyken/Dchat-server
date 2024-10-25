@@ -104,8 +104,8 @@ const LandingPage = () => {
       <footer id="contact" className="bg-blue-500 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-          <p className="mb-2">Email: support@dchat.com</p>
-          <p className="mb-4">Phone: (123) 456-7890</p>
+          <p className="mb-2">Email: davyken@gmail.com</p>
+          <p className="mb-4">Phone: (237) 693230485</p>
           <p>&copy; 2024 D-Chat. All rights reserved.</p>
         </div>
       </footer>
