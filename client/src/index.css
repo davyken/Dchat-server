@@ -16,6 +16,10 @@ body {
 	width: 8px;
 }
 
+.search-input {  
+	width: 700px;  
+  }
+
 ::-webkit-scrollbar-track {
 	background: #555;
 }
