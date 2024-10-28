@@ -137,7 +137,7 @@ const MessageInput = () => {
 				<div className='absolute inset-y-0 end-0 flex items-center pe-3'>
 					<button
 						type='button'
-						className='mr-2 text-gray-400 hover:text-white'
+						className='mr-2 text-blue-500 hover:text-white'
 						onClick={triggerFileInput}
 					>
 						<Paperclip size={20} />
@@ -151,19 +151,19 @@ const MessageInput = () => {
 					/>
 					<button
 						type='button'
-						className='mr-2 text-gray-400 hover:text-white'
+						className='mr-2 text-blue-500 hover:text-white'
 						onClick={toggleEmojiPicker}
 					>
 						<Smile size={20} />
 					</button>
 					<button
 						type='button'
-						className='mr-2 text-gray-400 hover:text-white'
+						className='mr-2 text-blue-500 hover:text-white'
 						onClick={isRecording ? stopRecording : startRecording}
 					>
 						<Mic size={20} color={isRecording ? "red" : "currentColor"} />
 					</button>
-					<button type='submit' className='text-gray-400 hover:text-white' disabled={loading}>
+					<button type='submit' className='text-blue-500 hover:text-white' disabled={loading}>
 						{loading ? <div className='loading loading-spinner'></div> : <Send size={20} />}
 					</button>
 				</div>
@@ -172,7 +172,7 @@ const MessageInput = () => {
 						<div className='flex justify-end p-2'>
 							<button
 								type='button'
-								className='text-gray-400 hover:text-white'
+								className='text-blue-500 hover:text-white'
 								onClick={toggleEmojiPicker}
 							>
 								<X size={24} />

@@ -37,7 +37,7 @@ const SearchInput = () => {
 
 	return (  
 		<div>  
-<h1 className="text-3xl text-white-400 font-bold">DChats</h1>
+<h1 className="text-3xl text-blue-500 font-bold">DChats</h1>
 <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row items-center gap-2 p-4'>  
 				<input  
 					type='text'  

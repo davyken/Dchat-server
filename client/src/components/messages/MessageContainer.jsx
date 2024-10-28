@@ -30,7 +30,7 @@ const MessageContainer = () => {
 			) : (
 				<>
 					{/* Header */}
-					<div className='bg-slate-500  px-4 py-2 mb-2  flex items-center justify-between relative'>
+					<div className='bg-gray-700  px-4 py-2 mb-2  flex items-center justify-between relative'>
 						<div className="flex items-center gap-3">
 							<button 
 								className="md:hidden text-gray-900 hover:text-gray-700"
@@ -48,15 +48,15 @@ const MessageContainer = () => {
 						</div>
 						<div className="absolute left-1/2 transform -translate-x-1/2 text-center">
 							<span className='label-text block'></span>
-							<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+							<span className='text-white-100 font-bold'>{selectedConversation.fullName}</span>
 						</div>
 						<div className='flex gap-2'>
 							<RiPhoneFill 
-								className='text-gray-900 cursor-pointer text-xl' 
+								className='text-blue-500 cursor-pointer text-xl' 
 								onClick={() => handleCall('audio')}
 							/>
 							<RiVideoFill 
-								className='text-gray-900 cursor-pointer text-xl' 
+								className='text-blue-500 cursor-pointer text-xl' 
 								onClick={() => handleCall('video')}
 							/>
 						</div>
