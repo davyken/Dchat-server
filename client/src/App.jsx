@@ -6,14 +6,14 @@ import SignUp from "./pages/signup/SignUp";
 import { Toaster } from "react-hot-toast";  
 import { useAuthContext } from "./context/AuthContext";  
 import ResertPassword from "./pages/resertpassword/resertpassword";  
-import LandingPage from "./pages/landingPage/LandingPage"; // Import the LandingPage component  
+import LandingPage from "./pages/landingPage/LandingPage";  
 
 function App() {  
     const { authUser } = useAuthContext();  
     return (  
         <div className='min-h-screen flex flex-col justify-center '>  {/* items-center*/} 
                 <Routes>  
-                    <Route path='/' element={<LandingPage />} /> {/* New route for LandingPage */}  
+                    <Route path='/' element={<LandingPage />} />   
                     <Route path='/home' element={authUser ? <Home /> : <Navigate to={"/login"} />} />  
                     <Route path='/login' element={authUser ? <Navigate to='/home' /> : <Login />} />  
                     <Route path='/signup' element={authUser ? <Navigate to='/home' /> : <SignUp />} />  

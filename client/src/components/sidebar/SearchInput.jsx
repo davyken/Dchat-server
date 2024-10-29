@@ -56,7 +56,7 @@ const SearchInput = () => {
 					{filteredConversations.map((c) => (  
 						<div   
 							key={c.id}   
-							className="p-2 border rounded-md cursor-pointer hover:bg-gray-100"  
+							className="p-2 border rounded-md cursor-pointer hover:bg-blue-500"  
 							onClick={() => {  
 								setSelectedConversation(c);  
 								setSearch('');  
