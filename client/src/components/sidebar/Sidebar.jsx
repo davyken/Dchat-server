@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import Conversations from "./Conversations";  
 import LogoutButton from "./LogoutButton";  
 import SearchInput from "./SearchInput";  
-import { useAuthContext } from "../../context/AuthContext";  
+import { useAuthContext } from "../../context/AuthContext"; 
+// import MessageNotificationIcon from "../messageUI/messageUI";  
+
+
+// <MessageNotificationIcon /> 
 
 const Sidebar = () => {  
 	const {authUser} = useAuthContext();  
