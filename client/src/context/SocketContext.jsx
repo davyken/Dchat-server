@@ -11,7 +11,7 @@ export const useSocketContext = () => {
 export const SocketContextProvider = ({ children }) => {  
 	const [socket, setSocket] = useState(null);  
 	const [onlineUsers, setOnlineUsers] = useState([]);  
-	const [newMessageReceived, setNewMessageReceived] = useState(false); // state for new messages  
+	const [newMessageReceived, setNewMessageReceived] = useState(false);  
 	const { authUser } = useAuthContext();  
 
 	useEffect(() => {  
