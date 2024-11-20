@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
         gender: {
             type: String,
             required: true,
-            enum: ["male", "female", "not_specified"], // Added not_specified for Google users
+            enum: ["male", "female", "not_specified"], 
             default: "not_specified"
         },
         profilePic: {
