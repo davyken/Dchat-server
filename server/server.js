@@ -99,15 +99,10 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 // Serve static files
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, "/client, dist")));
 
-// Ensure the index.html file is served correctly
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"), (err) => {
-    if (err) {
-      res.status(err.status).end();
-    }
-  });
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 server.listen(PORT, () => {
