@@ -11,7 +11,7 @@ import userRoutes from "./routes/user_routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { app, server } from "./socket/socket.js";
-import User from "./models/user_model.js"; 
+import User from "./models/user_model.js";
 
 dotenv.config();
 
@@ -25,72 +25,72 @@ app.use(cookieParser());
 
 // Generate JWT Token
 const generateToken = (userId) => {
-    return jwt.sign({ userId }, process.env.JWT_SECRET, {
-        expiresIn: "15d",
-    });
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: "15d",
+  });
 };
 
 // Set cookie
 const generateTokenAndSetCookie = (userId, res) => {
-    const token = generateToken(userId);
-    res.cookie("jwt", token, {
-        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
-        httpOnly: true,
-        sameSite: "strict",
-        secure: process.env.NODE_ENV !== "development",
-    });
-    return token;
+  const token = generateToken(userId);
+  res.cookie("jwt", token, {
+    maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV !== "development",
+  });
+  return token;
 };
 
 // Endpoint for Google authentication
-app.post('/api/auth/google', async (req, res) => {
-    try {
-        const { credential } = req.body;
+app.post("/api/auth/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
 
-        const ticket = await googleClient.verifyIdToken({
-            idToken: credential,
-            audience: process.env.GOOGLE_CLIENT_ID,
-        });
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
 
-        const payload = ticket.getPayload();
-        const { sub: googleId, email, name, picture } = payload;
+    const payload = ticket.getPayload();
+    const { sub: googleId, email, name, picture } = payload;
 
-        // Check if user exists
-        let user = await User.findOne({ email });
+    // Check if user exists
+    let user = await User.findOne({ email });
 
-        if (!user) {
-            // Create new user if doesn't exist
-            user = await User.create({
-                fullName: name,
-                email,
-                googleId,
-                profilePic: picture,
-                password: "", // Empty password for Google auth users
-                gender: "N/A", // Default value, can be updated later
-            });
-        }
-
-        // Generate token and set cookie
-        const token = generateTokenAndSetCookie(user._id, res);
-
-        res.status(200).json({
-            token,
-            user: {
-                _id: user._id,
-                fullName: user.fullName,
-                email: user.email,
-                profilePic: user.profilePic,
-                gender: user.gender,
-            },
-        });
-
-    } catch (error) {
-        console.error("Error in Google authentication:", error);
-        res.status(500).json({ 
-            error: "Authentication failed", 
-            details: process.env.NODE_ENV === "development" ? error.message : undefined 
-        });
+    if (!user) {
+      // Create new user if doesn't exist
+      user = await User.create({
+        fullName: name,
+        email,
+        googleId,
+        profilePic: picture,
+        password: "", // Empty password for Google auth users
+        gender: "N/A", // Default value, can be updated later
+      });
     }
+
+    // Generate token and set cookie
+    const token = generateTokenAndSetCookie(user._id, res);
+
+    res.status(200).json({
+      token,
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        profilePic: user.profilePic,
+        gender: user.gender,
+      },
+    });
+  } catch (error) {
+    console.error("Error in Google authentication:", error);
+    res.status(500).json({
+      error: "Authentication failed",
+      details:
+        process.env.NODE_ENV === "development" ? error.message : undefined,
+    });
+  }
 });
 
 // Your existing routes
@@ -102,10 +102,10 @@ app.use("/api/users", userRoutes);
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 server.listen(PORT, () => {
-    connectToMongoDB();
-    console.log(`Server Running on port ${PORT}`);
+  connectToMongoDB();
+  console.log(`Server Running on port ${PORT}`);
 });
