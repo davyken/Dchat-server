@@ -1,9 +1,16 @@
 import express from "express";
-import { sendMessage, getMessages } from "../controllers/message_controller.js";
-import  protectRoute  from "../middleware/protectRoute.js";
-const router = express.Router(); 
+import { sendMessage, getMessages, markMessageAsRead } from "../controllers/message_controller.js"; // Import the new controller function
+import protectRoute from "../middleware/protectRoute.js";
 
-router.get("/:id", protectRoute, getMessages) ;
-router.post("/send/:id",protectRoute, sendMessage);
+const router = express.Router();
 
-export default router
+// Get messages for a specific conversation
+router.get("/:id", protectRoute, getMessages);
+
+// Send a message to a specific conversation
+router.post("/send/:id", protectRoute, sendMessage);
+
+// Mark a message as read
+router.post("/:id/read", protectRoute, markMessageAsRead); // New endpoint for marking a message as read
+
+export default router;

@@ -8,6 +8,8 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import ResertPassword from "./pages/resertpassword/resertpassword";
 import LandingPage from "./pages/landingPage/LandingPage";
+// import { ConversationProvider } from './hooks/useGetConversations';
+
 
 const GOOGLE_CLIENT_ID = "233838802280-rtmbofrpotmldqmmupdf3qjjd6i657fc.apps.googleusercontent.com";
 
@@ -15,6 +17,7 @@ function App() {
     const { authUser } = useAuthContext();
 
     return (
+        
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
             <div className='min-h-screen flex flex-col justify-center'>
                 <Routes>
@@ -39,6 +42,7 @@ function App() {
                 <Toaster />
             </div>
         </GoogleOAuthProvider>
+        
     );
 }
 
