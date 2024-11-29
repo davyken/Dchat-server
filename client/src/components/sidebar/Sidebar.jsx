@@ -12,7 +12,7 @@ const Sidebar = () => {
 	const {authUser} = useAuthContext();  
   
   return (  
-    <div className='border-r p-4 flex flex-col bg-gray-900  md:w-1/3 w-full'>  
+    <div className='border-r  rounded-3xl m-2 p-4 flex flex-col bg-gray-900  md:w-1/3 w-full'>  
       <SearchInput />  
       <div className='divider px-3'></div>  
       <Conversations />  
