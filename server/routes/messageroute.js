@@ -1,5 +1,6 @@
+// routes/messageRoutes.js
 import express from "express";
-import { sendMessage, getMessages, markMessageAsRead } from "../controllers/message_controller.js"; // Import the new controller function
+import { sendMessage, getMessages, markMessageAsRead } from "../controllers/message_controller.js";
 import protectRoute from "../middleware/protectRoute.js";
 
 const router = express.Router();
