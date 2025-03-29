@@ -3,11 +3,6 @@ import User from "../models/user_model.js";
 
 const protectRoute = async (req, res, next) => {
 	try {
-		// Check if req.cookies exists
-		if (!req.cookies) {
-			return res.status(401).json({ error: "Unauthorized - No Cookies Found" });
-		}
-
 		const token = req.cookies.jwt;
 
 		if (!token) {
@@ -27,6 +22,7 @@ const protectRoute = async (req, res, next) => {
 		}
 
 		req.user = user;
+
 		next();
 	} catch (error) {
 		console.log("Error in protectRoute middleware: ", error.message);
